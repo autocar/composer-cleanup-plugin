@@ -36,7 +36,12 @@ class CleanupPlugin implements PluginInterface, EventSubscriberInterface
         $this->filesystem = new Filesystem();
         $this->rules = CleanupRules::getRules();
     }
-
+    public static function postUpdate(Event $event)
+    {
+        $composer = $event->getComposer();
+        self::onPostInstallUpdateCmd(0);
+        // do stuff
+    }
     /**
      * {@inheritDoc}
      */
